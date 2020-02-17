@@ -1,0 +1,102 @@
+<!doctype html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <!-- Required meta tags -->
+   <th:block th:include="include/head"></th:block>
+   <style type="text/css">
+   .ss {
+   font-family:"Cardo", serif;
+ 
+   
+   }
+   
+   </style>
+</head>
+
+<body>
+  
+    <!--::header part start::-->
+    <header class="main_menu">
+        <th:block th:include="include/header"></th:block>
+    </header>
+    <!-- Header part end-->
+
+    <!-- banner part start-->
+    <section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="banner_text">
+                        <div class="banner_text_iner">
+                            <h5>the best of the best</h5>
+                            <h1>최고의 맛을 위해서</h1>
+                            <p>( 광고 영상 바로 보러가기 )</p>
+                            <div class="banner_btn">
+                                <div class="banner_btn_iner">
+                                    <a href="#" class="btn_2">ad <img src="img/icon/left_1.svg" alt=""></a>
+                                </div>
+                                <a href="https://www.youtube.com/watch?v=pBFQdxA-apI" class="popup-youtube video_popup">
+                                    <span><img src="img/icon/play.svg" alt=""></span> Watch our story</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner part start-->
+    
+     <div class="container">
+        <br>
+        
+        <form action="/users/check"  method="post">
+          <div>
+            <h3>sigin in</h3>
+          </div>
+          <hr>
+          
+          <label for="username" class="col-md-4 col-form-label text-md-right">username</label>
+         <div class="col-md-6">
+               <input type="text" id="username" class="form-control" name="username" required autofocus>
+          </div>
+          
+         <label for="passoword" class="col-md-4 col-form-label text-md-right">passoword</label>
+         <div class="col-md-6">
+               <input type="text" id="passoword" class="form-control" name="passoword" required autofocus>
+          </div>
+          
+          <br>
+        <div class="col-md-6">
+               <input type="submit"  class="form-control" value="sign in" required autofocus>
+          </div>
+        
+        
+        </form>
+        
+        <br>
+        <a href="/users/signup" class="genric-btn primary radius">가입하기</a>
+        <br>
+        <br>
+        <hr>
+     </div>
+	 
+		 
+    
+  
+
+   <!-- footer part start-->
+    <footer class="footer-area">
+       <th:block th:include="include/footer"></th:block>
+    </footer>
+   <!-- footer part end-->
+   
+    <th:block th:include="include/script"></th:block>
+
+</body>
+
+</html>
