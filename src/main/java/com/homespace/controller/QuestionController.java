@@ -58,8 +58,10 @@ public class QuestionController {
 	public String show(@PathVariable Long id,Model model) {
 
 		model.addAttribute("question",questionService.findById(id));
+		
 		Question question = questionService.findById(id);
 		question.increaseViewCount();
+		questionService.save(question);
 		
 		return "category/qnaShow";
 	}

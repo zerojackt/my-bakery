@@ -36,7 +36,7 @@ public class Question {
 	
 	
 	public void increaseViewCount() {
-		this.viewCount ++;
+		this.viewCount = viewCount +1 ;
 		
 		
 	}

@@ -8,8 +8,13 @@
 <head>
     <!-- Required meta tags -->
    <th:block th:include="include/head"></th:block>
-   <style type="text/css">
+
+
+<style type="text/css">
    
+   .sm-size {
+    font-size: smaller;
+   }
    
      ol {
 display: block;
@@ -68,7 +73,7 @@ font-weight: bold;
 }
 
 .post-stub {
-    border-bottom: 1px dotted #303030;
+    border-bottom: 1px solid #303030;
     margin: 0;
 }
 
@@ -156,11 +161,24 @@ margin: 5px;
                     
                     <div id="post-index" class="container" style="display: block;">
 					    <ol class="post-list">
+					    
+					          <li class="post-stub border bg-warning" >
+					                <a class="js-ajax-link" >
+					                  &nbsp;   <span class="post-stub-title" ></span>
+					                    <span ></span> 
+					                    
+					                </a>
+					            </li>
 					        
-					            <li class="post-stub" th:each="questionLists: ${questionList}">
+					            <li class="post-stub border" th:each="questionLists: ${questionList}">
 					                <a class="js-ajax-link" th:href="@{/questions/show/{id}(id=${questionLists.id})}">
-					                    <h4 class="post-stub-title" th:text="${questionLists.title}"></h4>
-					                    <p th:text="${questionLists.writer.username}"></p>
+					                  &nbsp;  <h4 class="post-stub-title" th:text="${questionLists.title}"></h4>
+					                                
+					                   &nbsp; l  &nbsp; by 
+					                   <span th:text="${questionLists.writer.username}" class="sm-size"></span> 
+					                   <span th:text="${questionLists.viewCount}" class="sm-size border"></span> 
+					                                
+					                 </p>
 					                    
 					                </a>
 					            </li>
