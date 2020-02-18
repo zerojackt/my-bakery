@@ -72,8 +72,18 @@ public class QuestionController {
 		 questionService.deleteById(id);
 		
 		
-		return "redirect:/category/qna";
+		return "redirect:/questions";
 		
+	}
+	
+	@RequestMapping("/edtited/{id}/form")
+	public String edtitedForm(@PathVariable Long id,Model model) {
+		
+
+		model.addAttribute("question",questionService.findById(id));
+	   
+		
+		return "category/qnaUpdateForm";
 	}
 	
 	@RequestMapping("/edtited/{id}")

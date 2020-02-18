@@ -41,66 +41,36 @@
     <!--::exclusive_item_part start::-->
     <section class="exclusive_item_part blog_item_section">
         <div class="container">
-            <a href="#" class="genric-btn primary">자주하는 질문</a>
-            <a th:if="${session.sessionUser != null}" href="/questions/form" class="genric-btn primary">질문하기</a>
-             <a th:href="@{/questions/delete/{id}(id=${question.id})}" class="genric-btn primary">질문삭제</a>
-              <a th:href="@{/questions/edtited/{id}/form(id=${question.id})}"  class="genric-btn primary">질문수정</a>
+
             <a href="/questions" class="genric-btn primary">질문보기</a>
              
       </div>
-       
-       <hr>
-       
+      
        <div class="container">
        <br>
-       <h4>질문</h4>
+       <h4>질문 수정하기</h4>
        <br> 
-         
-         
-           	<div class="section-top-border">
-				<h3>제목 : <span class="mb-30" th:utext="${question.title}"></span></h3>
-				<div class="row">
-					<div class="col-md-3">
-						작성자 : <span th:text="${question.writer.username}"></span>
-					</div>
-					<hr>
-					<div class="col-md-9 mt-sm-20">
-						<p th:text="${question.contents}"></p>
-					</div>
-				</div>
-			</div>
+       
+					<form th:action="@{/questions/edtited/{id}(id=${question.id})}" method="post">
+							<div class="mt-10">
+								<input type="text" th:value="${question.title}" value="null" name="title" placeholder="제목" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
+								 required class="single-input">
+							</div>
+						
+							
+							
 
+							<div class="mt-10">
+								<textarea class="single-textarea"  th:text="${question.contents}" name="contents" placeholder="내용" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'"
+								 required></textarea>
+							</div>
+							
+							
+							<div class="mt-10">
+								<input type="submit" value="질문 수정" required class="single-input-secondary">
+							</div>
+						</form>
 			
-        </div>
-        
-        <hr>
-        
-      <div class="container">
-            <a href="/answers/save" class="genric-btn success radius">답변하기</a>
-     
-             
-      </div>
-        
-     
-     <div class="container">
-       <br>
-       <h4>답변</h4>
-       <br> 
-         
-         
-           	<div class="section-top-border">
-				
-				<div class="row">
-					<div class="col-md-3">
-						작성자: <span th:text="${question.writer.username}"></span>
-					</div>
-					<hr>
-					<div class="col-md-9 mt-sm-20">
-						<p th:text="${question.contents}"></p>
-					</div>
-				</div>
-			</div>
-
 			
         </div>
         
