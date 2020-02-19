@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.homespace.domain.HighViewsQuestion;
 import com.homespace.domain.Question;
 import com.homespace.domain.User;
+import com.homespace.repository.HighViewsQuestionRepository;
+import com.homespace.service.HighViewsCountQuestionService;
 import com.homespace.service.QuestionService;
 
 @Controller
@@ -23,20 +26,24 @@ public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
 	
+	@Autowired
+	private HighViewsCountQuestionService highViewsCountQuestionService;
+	
+	
 	@GetMapping("")
 	public String home(@PageableDefault Pageable pageable,Model model) {
 		
 		Page<Question> questionList = questionService.getQuestionList(pageable);
 		model.addAttribute("questionList",questionList);
 		
-		return "category/qna";
+		return "category/qanda/qna";
 		
 	}
 	
 	@RequestMapping("/form")
 	public String form() {
 		
-		return "category/qnaform";
+		return "category/qanda/qnaform";
 	}
 	
 	@RequestMapping("/save")
@@ -50,7 +57,7 @@ public class QuestionController {
 		}
 		
 		
-		return "redirect:category/qna";
+		return "redirect:category/qanda/qna";
 		
 	}
 	
@@ -63,7 +70,15 @@ public class QuestionController {
 		question.increaseViewCount();
 		questionService.save(question);
 		
-		return "category/qnaShow";
+		if(question.getViewCount() > 10) {
+			
+			HighViewsQuestion highViewsQuestion = new HighViewsQuestion(question.getTitle(),question.getWriter(),question.getContents(),question.getViewCount());
+			
+			highViewsCountQuestionService.save(highViewsQuestion);
+			
+		}
+		
+		return "category/qanda/qnaShow";
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -83,7 +98,7 @@ public class QuestionController {
 		model.addAttribute("question",questionService.findById(id));
 	   
 		
-		return "category/qnaUpdateForm";
+		return "category/qanda/qnaUpdateForm";
 	}
 	
 	@RequestMapping("/edtited/{id}")
@@ -94,6 +109,17 @@ public class QuestionController {
 		questionService.save(question);
 		
 		return String.format("redirect:/questions/show/%d", id);
+	}
+	
+	@RequestMapping("/high")
+	public String highviewcountQuestion(@PageableDefault Pageable pageable,Model model) {
+		
+		Page<HighViewsQuestion> highViewsCountQuestion =  highViewsCountQuestionService.getHighViewsCountQuestionList(pageable);
+		model.addAttribute("questionList", highViewsCountQuestion);
+		
+		
+		
+		return "category/qanda/qnaHighViewCount";
 	}
 	
 	

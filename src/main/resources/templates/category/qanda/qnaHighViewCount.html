@@ -1,0 +1,261 @@
+<!doctype html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <!-- Required meta tags -->
+   <th:block th:include="include/head"></th:block>
+
+
+<style type="text/css">
+   
+   .sm-size {
+    font-size: smaller;
+   }
+   
+     ol {
+display: block;
+list-style-type: decimal;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 40px;
+}
+
+ul, ol {
+list-style-position: inside;
+line-height: 1.8;
+margin: 0 0 40px;
+padding: 0;
+}
+
+
+li {
+display: list-item;
+text-align: -webkit-match-parent;
+}
+
+a {
+color: #F03838;
+text-decoration: none;
+}
+
+h4 {
+font-size: 18px;
+margin-bottom: 18px;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-bottom: 33px;
+text-transform: none;
+}
+user agent stylesheeth4 {
+display: block;
+-webkit-margin-before: 1.33em;
+-webkit-margin-after: 1.33em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+}
+
+/* ============================================================ */
+/* Post Index */
+/* ============================================================ */
+
+.post-list {
+ /*   border-top: 6px solid #303030; */
+    list-style: none;
+    margin: 80px 40px 0;
+    padding: 35px 0 0;
+}
+
+.post-stub {
+    border-bottom: 1px solid #303030;
+    margin: 0;
+}
+
+.post-stub:first-child { padding-top: 0; }
+
+.post-stub a {
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    display: block;
+    color: #424242;
+    padding: 20px 5px;
+}
+
+.post-stub a:hover {
+    background: #F5F5FC;
+    color: #57A3E8;
+    padding: 20px 12px;
+}
+
+.post-stub-title {
+    display: inline-block;
+    margin: 0;
+    text-transform: none;
+}
+
+.post-stub-date { display: inline-block; }
+
+.post-stub-date:before { content: "/ "; }
+
+.next-posts-link a,
+.previous-posts-link a {
+    display: block;
+    padding: 8px 11px;
+}
+
+.dd{
+padding-left: 50px;
+}
+.dd li{
+
+margin: 5px;
+}
+     
+   </style>
+</head>
+
+<body>
+  
+    <!--::header part start::-->
+    <header class="main_menu">
+        <th:block th:include="include/header"></th:block>
+    </header>
+    <!-- Header part end-->
+
+    <!-- banner part start-->
+    <section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="banner_text">
+                        <div class="banner_text_iner">
+                            <h5>Question and Answer</h5>
+                            <h1>Q and A</h1>
+                            <p></p>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner part start-->
+
+    <!--::exclusive_item_part start::-->
+    <section class="exclusive_item_part blog_item_section">
+        <div class="container">
+            <a href="/questions/high" class="genric-btn primary">자주하는 질문</a>
+            <a th:if="${session.sessionUser != null}" href="/questions/form" class="genric-btn primary">질문하기</a>
+            <a href="/questions" class="genric-btn primary">질문보기</a>
+             
+      </div>
+      
+       <div class="container">
+                    
+                    <div id="post-index" class="container" style="display: block;">
+					    <ol class="post-list">
+					    
+					          <li class="post-stub border bg-warning" >
+					                <a class="js-ajax-link" >
+					                  &nbsp;   <span class="post-stub-title" ></span>
+					                    <span ></span> 
+					                    
+					                </a>
+					            </li>
+					        
+					            <li class="post-stub border" th:each="questionLists: ${questionList}">
+					                <a class="js-ajax-link" th:href="@{/questions/show/{id}(id=${questionLists.id})}">
+					                  &nbsp;  <h4 class="post-stub-title" th:text="${questionLists.title}"></h4>
+					                                
+					                   &nbsp; l  &nbsp; by 
+					                   <span th:text="${questionLists.writer.username}" class="sm-size"></span> 
+					                   <span th:text="${questionLists.viewCount}" class="sm-size border"></span> 
+					                                
+					                 </p>
+					                    
+					                </a>
+					            </li>
+					        
+					   
+					        
+					      
+					        
+					    
+					        
+					     
+					        
+					    </ol>
+					</div>
+       <br> 
+         
+       
+	
+			
+		<div style="text-align: center;" class="dd">
+		    <ul class="pagination"
+		        th:with="start=${T(Math).floor(questionList.number/10)*10 + 1},
+		                    last=(${start + 9 < questionList.totalPages ? start + 9 : questionList.totalPages})">
+		        <li>
+		            <a th:href="@{/questions(page=1)}" aria-label="First">
+		                <span aria-hidden="true">First</span>
+		            </a>
+		        </li>
+		
+		        <li th:class="${questionList.first} ? 'disabled'">
+		            <a th:href="${questionList.first} ? '#' :@{/questions(page=${questionList.number})}" aria-label="Previous">
+		                <span aria-hidden="true">&lt;</span>
+		            </a>
+		        </li>
+		
+		        <li th:each="page: ${#numbers.sequence(start, last)}" th:class="${page == questionList.number + 1} ? 'active'">
+		            <a th:text="${page}" th:href="@{/questions(page=${page})}"></a>
+		        </li>
+		
+		        <li th:class="${questionList.last} ? 'disabled'">
+		            <a th:href="${questionList.last} ? '#' : @{/questions(page=${questionList.number + 2})}" aria-label="Next">
+		                <span aria-hidden="true">&gt;</span>
+		            </a>
+		        </li>
+		
+		        <li>
+		            <a th:href="@{/questions(page=${questionList.totalPages})}" aria-label="Last">
+		                <span aria-hidden="true">Last</span>
+		            </a>
+		        </li>
+		    </ul>
+		</div>
+			
+			
+        </div>
+        
+    </section>
+    <br>
+    <br>
+    <!--::exclusive_item_part end::-->
+
+    
+
+    
+    
+   
+  
+
+   
+   <!-- footer part start-->
+    <footer class="footer-area">
+       <th:block th:include="include/footer"></th:block>
+    </footer>
+   <!-- footer part end-->
+   
+    <th:block th:include="include/script"></th:block>
+
+</body>
+
+</html>

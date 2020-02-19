@@ -41,7 +41,7 @@
     <!--::exclusive_item_part start::-->
     <section class="exclusive_item_part blog_item_section">
         <div class="container">
-            <a href="#" class="genric-btn primary">자주하는 질문</a>
+            <a href="/questions/high" class="genric-btn primary">자주하는 질문</a>
             <a th:if="${session.sessionUser != null}" href="/questions/form" class="genric-btn primary">질문하기</a>
              <a th:href="@{/questions/delete/{id}(id=${question.id})}" class="genric-btn primary">질문삭제</a>
               <a th:href="@{/questions/edtited/{id}/form(id=${question.id})}"  class="genric-btn primary">질문수정</a>
