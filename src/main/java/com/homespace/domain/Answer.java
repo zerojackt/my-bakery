@@ -2,6 +2,7 @@ package com.homespace.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -28,14 +29,14 @@ public class Answer {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "QUESTION_ID")
-	private Question questionId;
+	private Question question;
     
 	
-	public Answer(String contents, User writer, Question questionId) {
+	public Answer(String contents, User writer, Question question) {
 		super();
 		this.contents = contents;
 		this.writer = writer;
-		this.questionId = questionId;
+		this.question = question;
 	}
 	
 	

@@ -1,13 +1,18 @@
 package com.homespace.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -31,6 +36,11 @@ public class Question {
 	private String contents;
 	
 	private int viewCount;
+	
+	@OneToMany(mappedBy = "question",fetch = FetchType.LAZY)
+	private List<Answer> answers;
+	
+
     
 	
 	

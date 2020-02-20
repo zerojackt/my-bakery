@@ -16,6 +16,7 @@ import com.homespace.domain.HighViewsQuestion;
 import com.homespace.domain.Question;
 import com.homespace.domain.User;
 import com.homespace.repository.HighViewsQuestionRepository;
+import com.homespace.service.AnswerService;
 import com.homespace.service.HighViewsCountQuestionService;
 import com.homespace.service.QuestionService;
 
@@ -29,6 +30,8 @@ public class QuestionController {
 	@Autowired
 	private HighViewsCountQuestionService highViewsCountQuestionService;
 	
+	@Autowired
+	private AnswerService answerService;
 	
 	@GetMapping("")
 	public String home(@PageableDefault Pageable pageable,Model model) {
@@ -65,6 +68,9 @@ public class QuestionController {
 	public String show(@PathVariable Long id,Model model) {
 
 		model.addAttribute("question",questionService.findById(id));
+		
+		
+	
 		
 		Question question = questionService.findById(id);
 		question.increaseViewCount();

@@ -75,31 +75,53 @@
         
         <hr>
         
-      <div class="container">
-            <a href="/answers/save" class="genric-btn success radius">답변하기</a>
-     
-             
-      </div>
+       <div class="container">
+       <br>
+       <h4>답변 등록하기</h4>
+       <br> 
+       
+					<form th:action="@{/questions/{id}/answers(id=${question.id})}" method="post">
+						
+						
+							
+							
+
+							<div class="mt-10">
+								<textarea class="single-textarea" name="contents" placeholder="내용" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'"
+								 required></textarea>
+							</div>
+							
+							
+							<div class="mt-10">
+								<input type="submit" value="답변 등록" required class="single-input-secondary">
+							</div>
+						</form>
+			
+			
+        </div>
         
      
      <div class="container">
        <br>
        <h4>답변</h4>
        <br> 
-         
-         
-           	<div class="section-top-border">
+       
+       <ol>
+       
+           <li th:each="answer : ${question.answers}">
+					               
+				 <p> 작성자 : <span th:text="${answer.writer.username}" class="sm-size"></span></p> 
+				<p>내용 : <span th:text="${answer.contents}" class="sm-size"></span></p>
 				
-				<div class="row">
-					<div class="col-md-3">
-						작성자: <span th:text="${question.writer.username}"></span>
-					</div>
-					<hr>
-					<div class="col-md-9 mt-sm-20">
-						<p th:text="${question.contents}"></p>
-					</div>
-				</div>
-			</div>
+				
+					                                
+					             
+				<hr>	                    
+			</li>       
+       
+       </ol>
+         
+  
 
 			
         </div>

@@ -1,5 +1,6 @@
 package com.homespace.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class User {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false, length = 20, unique = true)
 	private Long id;
 	
 	private String username;
