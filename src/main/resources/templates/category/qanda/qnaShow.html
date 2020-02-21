@@ -80,6 +80,12 @@
        <h4>답변 등록하기</h4>
        <br> 
        
+       <p>
+          <a th:href="@{'/questions/'+{question.id}+'/'+{answer.id}+'/delete'}" class="genric-btn primary">답변삭제</a>
+          <a th:href="@{'/questions/'+{question.id}+'/'+{answer.id}+'/update'}"   class="genric-btn primary">답변수정</a>
+       
+       </p>
+       
 					<form th:action="@{/questions/{id}/answers(id=${question.id})}" method="post">
 						
 						

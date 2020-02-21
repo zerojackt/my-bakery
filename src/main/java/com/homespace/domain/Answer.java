@@ -38,6 +38,12 @@ public class Answer {
 		this.writer = writer;
 		this.question = question;
 	}
+
+
+	public void update(String contents) {
+		// TODO Auto-generated method stub
+		this.contents = contents;
+	}
 	
 	
 	

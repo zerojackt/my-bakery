@@ -54,5 +54,27 @@ public class AnswerController {
 		
 	}
 	
+	@RequestMapping("/{id}/delete")
+	public String delete(@PathVariable Long questionId,@PathVariable Long id) {
+		
+		answerService.delete(id);
+		
+		return "redirect:/questions";
+		
+	}
+	
+	@RequestMapping("/{id}/update")
+	public String update(@PathVariable Long questionId,@PathVariable Long id,String contents) {
+		
+		Answer answer = answerService.findById(id);
+		answer.update(contents);
+		answerService.save(answer);
+		
+		return String.format("redirect:/questions/show/%d", questionId);
+		
+	}
+	
+	
+	
 
 }

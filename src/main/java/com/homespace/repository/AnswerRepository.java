@@ -6,6 +6,6 @@ import com.homespace.domain.Answer;
 
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
 
-	Answer findByQuestion(Long id);
+
 
 }
