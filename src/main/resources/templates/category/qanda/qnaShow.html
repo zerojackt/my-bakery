@@ -39,7 +39,7 @@
     <!-- banner part start-->
 
     <!--::exclusive_item_part start::-->
-    <section class="exclusive_item_part blog_item_section">
+    <section class="exclusive_item_part blog_item_section" >
         <div class="container">
             <a href="/questions/high" class="genric-btn primary">자주하는 질문</a>
             <a th:if="${session.sessionUser != null}" href="/questions/form" class="genric-btn primary">질문하기</a>
@@ -108,19 +108,19 @@
        <h4>답변</h4>
        <br> 
        
-       <ol>
+       <ul>
        
-           <li th:each="answer : ${question.answers}">
+           <li th:each="answer : ${question.answers}" class="border" style="padding-left: 15px;">
                     
-                   <p>
-			          <a th:href="@{/questions/{questionId}/answers/{id}/delete(questionId=${question.id},id=${answer.id})}" class="genric-btn primary">답변삭제</a>
-			          <a th:href="@{/questions/{questionId}/answers/update(questionId=${question.id})}"   class="genric-btn primary">답변수정</a>
+                   <p style="text-align: right;">
+			          <a th:href="@{/questions/{questionId}/answers/{id}/delete(questionId=${question.id},id=${answer.id})}" class="btn btn-outline-danger btn-sm">답변삭제</a>
+			          <a th:href="@{/questions/{questionId}/answers/{id}/update/form(questionId=${question.id},id=${answer.id})}"   class="btn btn-outline-danger btn-sm">답변수정</a>
 			       
 			       </p>
 					               
 				<p> 작성자 : <span th:text="${answer.writer.username}" class="sm-size"></span></p> 
 				 <hr>
-				<p>내용 : <span th:text="${answer.contents}" class="sm-size"></span></p>
+				<p><span th:text="${answer.contents}" class="sm-size"></span></p>
 				
 				
 					                                
@@ -128,7 +128,7 @@
 				<hr>	                    
 			</li>       
        
-       </ol>
+       </ul>
          
   
 

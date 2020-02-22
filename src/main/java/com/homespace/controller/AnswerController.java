@@ -75,10 +75,12 @@ public class AnswerController {
 		
 	}
 	
-	@RequestMapping("/update")
-	public String updateForm(@PathVariable Long questionId) {
+	@RequestMapping("/{id}/update/form")
+	public String updateForm(@PathVariable Long questionId,@PathVariable Long id,Model model) {
 		
 		
+		model.addAttribute("question",questionService.findById(questionId));
+		model.addAttribute("answer",answerService.findById(id));
 		
 		return "category/qanda/answerUpdateForm";
 	}
