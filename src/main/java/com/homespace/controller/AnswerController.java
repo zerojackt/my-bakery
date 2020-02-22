@@ -56,10 +56,11 @@ public class AnswerController {
 	
 	@RequestMapping("/{id}/delete")
 	public String delete(@PathVariable Long questionId,@PathVariable Long id) {
+		Answer answer = answerService.findById(id);
 		
-		answerService.delete(id);
+		answerService.delete(answer);
 		
-		return "redirect:/questions";
+		return String.format("redirect:/questions/show/%d", questionId);
 		
 	}
 	
@@ -72,6 +73,14 @@ public class AnswerController {
 		
 		return String.format("redirect:/questions/show/%d", questionId);
 		
+	}
+	
+	@RequestMapping("/update")
+	public String updateForm(@PathVariable Long questionId) {
+		
+		
+		
+		return "category/qanda/answerUpdateForm";
 	}
 	
 	

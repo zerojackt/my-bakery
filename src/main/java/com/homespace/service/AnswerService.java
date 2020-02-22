@@ -17,9 +17,9 @@ public class AnswerService {
 		return answerRepository.save(answer);
 	}
 
-	public void delete(Long id) {
+	public void delete(Answer answer) {
 		// TODO Auto-generated method stub
-		Answer answer = answerRepository.findById(id).get();
+		
 		answerRepository.delete(answer);
 	}
 

@@ -77,12 +77,12 @@
         
        <div class="container">
        <br>
-       <h4>답변 등록하기</h4>
+       <h4>답변 수정하기</h4>
        <br> 
        
 
        
-					<form th:action="@{/questions/{id}/answers(id=${question.id})}" method="post">
+					<form th:action="@{/questions/{questionId}/{id}/delete(questionId=${question.id},id=${answer.id})}"" method="post">
 						
 						
 							
@@ -95,7 +95,7 @@
 							
 							
 							<div class="mt-10">
-								<input type="submit" value="답변 등록" required class="single-input-secondary">
+								<input type="submit" value="답변 수정" required class="single-input-secondary">
 							</div>
 						</form>
 			
@@ -113,8 +113,8 @@
            <li th:each="answer : ${question.answers}">
                     
                    <p>
-			          <a th:href="@{/questions/{questionId}/answers/{id}/delete(questionId=${question.id},id=${answer.id})}" class="genric-btn primary">답변삭제</a>
-			          <a th:href="@{/questions/{questionId}/answers/update(questionId=${question.id})}"   class="genric-btn primary">답변수정</a>
+			          <a th:href="@{/questions/{questionId}/{id}/delete(questionId=${question.id},id=${answer.id})}" class="genric-btn primary">답변삭제</a>
+			          <a th:href="@{/questions/{questionId}/answers/update(questionId=${question.id})"   class="genric-btn primary">답변수정</a>
 			       
 			       </p>
 					               
