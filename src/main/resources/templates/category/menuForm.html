@@ -1,0 +1,104 @@
+<!doctype html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <!-- Required meta tags -->
+   <th:block th:include="include/head"></th:block>
+</head>
+
+<body>
+  
+    <!--::header part start::-->
+    <header class="main_menu">
+        <th:block th:include="include/header"></th:block>
+    </header>
+    <!-- Header part end-->
+
+    <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner text-center">
+                        <div class="breadcrumb_iner_item">
+                            <h2>Food Menu</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+    
+    <section>
+    
+     <div class="container">
+       <br>
+       <h4>메뉴 등록하기</h4>
+       <br> 
+       
+					<form action="/questions/save">
+							<div class="mt-10">
+								<input type="text" name="title" placeholder="제목" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
+								 required class="single-input">
+							</div>
+							
+
+							<div class="mt-10">
+								<textarea class="single-textarea" name="contents" placeholder="내용" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'"
+								 required></textarea>
+							</div>
+							
+							<div class="mt-10">
+								<input type="text" name="price" placeholder="가격" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
+								 required class="single-input">
+							</div>
+							
+							<div class="inputArea">
+							
+							 <label for="img">이미지</label>
+							 <input type="file" id="img" name="file" />
+							 <div class="select_img"><img src="" /></div>
+							 
+							 <script>
+							  $("#img").change(function(){
+							   if(this.files && this.files[0]) {
+							    var reader = new FileReader;
+							    reader.onload = function(data) {
+							     $(".select_img img").attr("src", data.target.result).width(500);        
+							    }
+							    reader.readAsDataURL(this.files[0]);
+							   }
+							  });
+							 </script>
+							</div>
+							
+							<hr>
+							
+							<div class="mt-10">
+								<input type="submit" value="질문 등록" required class="single-input-secondary">
+							</div>
+						</form>
+			
+			
+        </div>
+    
+    </section>
+    
+    
+    
+    
+   <!-- footer part start-->
+    <footer class="footer-area">
+       <th:block th:include="include/footer"></th:block>
+    </footer>
+   <!-- footer part end-->
+   
+    <th:block th:include="include/script"></th:block>
+
+</body>                       
+</html>
