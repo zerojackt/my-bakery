@@ -16,6 +16,7 @@ import com.homespace.domain.HighViewsQuestion;
 import com.homespace.domain.Question;
 import com.homespace.domain.User;
 import com.homespace.repository.HighViewsQuestionRepository;
+import com.homespace.repository.UserRepository;
 import com.homespace.service.AnswerService;
 import com.homespace.service.HighViewsCountQuestionService;
 import com.homespace.service.QuestionService;
@@ -23,6 +24,9 @@ import com.homespace.service.QuestionService;
 @Controller
 @RequestMapping("/questions")
 public class QuestionController {
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private QuestionService questionService;
@@ -50,7 +54,15 @@ public class QuestionController {
 	}
 	
 	@RequestMapping("/save")
-	public String save(String title,User writer,String contents,int viewCount,HttpSession session) {
+	public String save(String title,String contents,int viewCount,HttpSession session) {
+		
+		
+		User writer = (User) session.getAttribute("sessionUser");
+		if(writer == null) {
+			
+			return "redirect:/";
+		}
+		
 		Question question = new Question(title,writer,contents,viewCount);
 		questionService.save(question);
 		

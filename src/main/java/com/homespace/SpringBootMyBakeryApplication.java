@@ -2,8 +2,10 @@ package com.homespace;
 
 import java.util.stream.IntStream;
 
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -11,6 +13,11 @@ import com.homespace.domain.Question;
 import com.homespace.domain.User;
 import com.homespace.repository.QuestionRepository;
 import com.homespace.repository.UserRepository;
+
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
+
+
+
 
 @SpringBootApplication
 public class SpringBootMyBakeryApplication {

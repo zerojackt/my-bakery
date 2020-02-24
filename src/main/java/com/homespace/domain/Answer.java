@@ -24,11 +24,11 @@ public class Answer {
 	private String contents;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_writer"))
 	private User writer;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "QUESTION_ID")
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_question"))
 	private Question question;
     
 	

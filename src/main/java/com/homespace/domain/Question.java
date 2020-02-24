@@ -2,6 +2,7 @@ package com.homespace.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
@@ -28,8 +29,8 @@ public class Question {
 	
 	private String title;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID")
+	@ManyToOne
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_question_writer"))
 	private User writer;
 	
 	@Lob
