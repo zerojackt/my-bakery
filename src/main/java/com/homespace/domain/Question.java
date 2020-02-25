@@ -36,7 +36,7 @@ public class Question {
 	@Lob
 	private String contents;
 	
-	private int viewCount;
+	private Integer viewCount;
 	
 	@OneToMany(mappedBy = "question",fetch = FetchType.LAZY)
 	private List<Answer> answers;
@@ -53,7 +53,7 @@ public class Question {
 	}
 	
 	@Builder
-	public Question(String title, User writer, String contents, int viewCount) {
+	public Question(String title, User writer, String contents, Integer viewCount) {
 		super();
 		this.title = title;
 		this.writer = writer;

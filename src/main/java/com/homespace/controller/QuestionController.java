@@ -54,7 +54,7 @@ public class QuestionController {
 	}
 	
 	@RequestMapping("/save")
-	public String save(String title,String contents,int viewCount,HttpSession session) {
+	public String save(String title,String contents,Integer viewCount,HttpSession session) {
 		
 		
 		User writer = (User) session.getAttribute("sessionUser");

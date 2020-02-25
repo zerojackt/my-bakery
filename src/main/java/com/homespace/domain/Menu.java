@@ -21,9 +21,16 @@ public class Menu {
 	@Lob
 	private String contents;
 	
-	private int price;
+	private String price;
+
+	public Menu(String title, String contents, String price) {
+		super();
+		this.title = title;
+		this.contents = contents;
+		this.price = price;
+	}
 	
-	private String img;
+	
 	
 	
 
